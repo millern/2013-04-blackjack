@@ -3,13 +3,15 @@ class window.Hand extends Backbone.Collection
   model: Card
 
   initialize: (array, @deck, @isDealer) ->
-  stood: false
+    @stood = false
+    @gameEnded= false
   dealerPlay: ->
     @.at(0).flip() if !@.at(0).get 'revealed'
     @hit() & @dealerPlay() if @dealerScore() < 16
   hit: -> @add(@deck.pop()).last() if !@stood
   stand: ->
     @trigger 'stood'
+    console.log(@stood);
     @stood = true
   scores: ->
     # The scores are an array of potential scores.
