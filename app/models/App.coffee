@@ -7,5 +7,4 @@ class window.App extends Backbone.Model
     @set 'dealerHand', deck.dealDealer()
     @get('playerHand').on 'stood', =>
       console.log("stood triggered")
-      debugger;
-      @get('dealerHand').trigger'playtime'
+      @get('dealerHand').dealerPlay()
