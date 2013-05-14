@@ -15,7 +15,7 @@ class window.App extends Backbone.Model
       @get('dealerHand').dealerPlay()
       @set 'gameInProgress', false
     @get('playerHand').on 'doubleDown', =>
-      console.log "doubledown"
+      @get('scoreboard').set 'double', 2;
     @get('dealerHand').on 'tallyScoreTime', =>
       console.log "tallyscoretime"
       @tallyScore()
@@ -26,8 +26,8 @@ class window.App extends Backbone.Model
     @trigger 'renderNewGame'
   tallyScore: ->
     console.log "tallying score"
-    playerScore = @get('playerHand').dealerScore()
-    dealerScore = @get('dealerHand').dealerScore()
+    playerScore = @get('playerHand').smartScore()
+    dealerScore = @get('dealerHand').smartScore()
     if playerScore > 21
       @get('scoreboard').dealerWins()
     else if dealerScore > 21
