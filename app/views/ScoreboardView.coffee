@@ -2,13 +2,17 @@ class window.ScoreboardView extends Backbone.View
   className: 'scoreboard'
 
   #todo: switch to mustache
-  template: _.template '<div><p>Wins: <%= playerScore%></p><p>Losses: <%= dealerScore%></p></div>'
+  template: _.template '<div>
+                        <p>Wins: <%= playerScore%></p>
+                        <p>Losses: <%= dealerScore%></p>
+                        <p>Money: $<%=playerMoney%></p>
+                        <p>Current Bet: $<%=currentBet%></p>
+                        </div>'
 
   initialize: ->
     @render()
-    @.model.on 'change', => @render
+    @.model.on 'change', =>
+      @render()
 
   render: ->
-    #@$el.children.detach()
-    @$el.html @template @model
-
+    @$el.html @template @model.attributes

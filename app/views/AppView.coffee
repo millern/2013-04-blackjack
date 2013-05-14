@@ -3,6 +3,7 @@ class window.AppView extends Backbone.View
   template: _.template '
     <button class="hit-button">Hit</button> <button class="stand-button">Stand</button>
     <button class="play-again-button">Play Again</button>
+    <button class="change-bet-button">Change Bet</button>
     <div class="scoreboard-container"></div>
     <div class="player-hand-container"></div>
     <div class="dealer-hand-container"></div>
@@ -12,6 +13,7 @@ class window.AppView extends Backbone.View
     "click .hit-button": -> @model.get('playerHand').hit()
     "click .stand-button": -> @model.get('playerHand').stand()
     "click .play-again-button": -> @model.startGame()
+    "click .change-bet-button": -> @model.get('scoreboard').changeBet(prompt("How Much?"))
 
   initialize: ->
     @render()
