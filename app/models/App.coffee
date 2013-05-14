@@ -6,17 +6,22 @@ class window.App extends Backbone.Model
     @set 'scoreboard', scoreboard = new Scoreboard()
 
   startGame: ->
+    @set 'gameInProgress', true
     @set 'deck', deck = new Deck()
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
-    @set 'nick', "NICKSTRING"
+    @setTimeouts()
+    @get('playerHand').on 'stood', =>
+      @get('dealerHand').dealerPlay()
+      @set 'gameInProgress', false
     @get('dealerHand').on 'tallyScoreTime', =>
       console.log "tallyscoretime"
       @tallyScore()
-    @get('playerHand').on 'stood', =>
-      console.log("stood triggered")
-      @get('dealerHand').dealerPlay()
-    @trigger 'startGame'
+    @get('playerHand').on 'tallyScoreTime', =>
+      console.log "tallyscoretime"
+      @tallyScore()
+      @set 'gameInProgress', false
+    @trigger 'renderNewGame'
   tallyScore: ->
     console.log "tallying score"
     playerScore = @get('playerHand').dealerScore()
@@ -31,3 +36,13 @@ class window.App extends Backbone.Model
       @get('scoreboard').dealerWins()
     else
       console.log("Ties are for losers")
+  setTimeouts: ->
+    setTimeout((=>
+        @get('playerHand').at(0).flip()),
+      500)
+      setTimeout((=>
+        @get('playerHand').at(1).flip()),
+      1000)
+      setTimeout((=>
+        @get('dealerHand').at(1).flip()),
+      1500)

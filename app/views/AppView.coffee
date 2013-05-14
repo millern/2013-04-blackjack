@@ -10,14 +10,14 @@ class window.AppView extends Backbone.View
   '
 
   events:
-    "click .hit-button": -> @model.get('playerHand').hit()
-    "click .stand-button": -> @model.get('playerHand').stand()
-    "click .play-again-button": -> @model.startGame()
-    "click .change-bet-button": -> @model.get('scoreboard').changeBet(prompt("How Much?"))
+    "click .hit-button": -> @model.get('playerHand').hit() if @model.get "gameInProgress"
+    "click .stand-button": -> @model.get('playerHand').stand() if @model.get "gameInProgress"
+    "click .play-again-button": -> @model.startGame() if !@model.get "gameInProgress"
+    "click .change-bet-button": -> @model.get('scoreboard').changeBet(prompt("How Much?")) if !@model.get "gameInProgress" 
 
   initialize: ->
     @render()
-    @model.on 'startGame', =>
+    @model.on 'renderNewGame', =>
       @render()
 
 

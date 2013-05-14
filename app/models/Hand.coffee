@@ -9,7 +9,10 @@ class window.Hand extends Backbone.Collection
     console.log "dealerPlay"
     @.at(0).flip() if !@.at(0).get 'revealed'
     if @dealerScore() < 16 then @hit() & @dealerPlay() else @trigger("tallyScoreTime")
-  hit: -> @add(@deck.pop()).last() if !@stood
+  hit: ->
+    @add(@deck.pop()).last() if !@stood
+    @trigger "tallyScoreTime" if @dealerScore() > 21
+
   stand: ->
     @trigger 'stood' if !@stood
     console.log(@stood);
