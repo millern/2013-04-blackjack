@@ -14,6 +14,8 @@ class window.App extends Backbone.Model
     @get('playerHand').on 'stood', =>
       @get('dealerHand').dealerPlay()
       @set 'gameInProgress', false
+    @get('playerHand').on 'doubleDown', =>
+      console.log "doubledown"
     @get('dealerHand').on 'tallyScoreTime', =>
       console.log "tallyscoretime"
       @tallyScore()
@@ -38,11 +40,11 @@ class window.App extends Backbone.Model
       console.log("Ties are for losers")
   setTimeouts: ->
     setTimeout((=>
-        @get('playerHand').at(0).flip()),
-      500)
-      setTimeout((=>
-        @get('playerHand').at(1).flip()),
-      1000)
-      setTimeout((=>
-        @get('dealerHand').at(1).flip()),
-      1500)
+      @get('playerHand').at(0).flip()),
+    300)
+    setTimeout((=>
+      @get('playerHand').at(1).flip()),
+    600)
+    setTimeout((=>
+      @get('dealerHand').at(1).flip()),
+    900)
