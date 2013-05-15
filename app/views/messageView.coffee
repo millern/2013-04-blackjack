@@ -6,6 +6,6 @@ class window.MessageView extends Backbone.View
 
   initialize: ->
     @render()
-    @model.on 'change' , @render()
+    @model.on 'change' ,=> @render()
   render: ->
     @$el.html @template @model.attributes
