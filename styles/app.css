@@ -4,7 +4,15 @@
   width: 100px;
   border-radius: 5px;
   height: 140px;
-  margin-right: 20px;
+  margin-right: -15px;
+  background: white;
+  -moz-transition: all 0.5s linear;
+  -webkit-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+}
+.card:hover{
+  margin-right: 0;
 }
 
 .covered {
