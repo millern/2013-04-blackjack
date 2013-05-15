@@ -5,8 +5,8 @@ class window.AppView extends Backbone.View
     <button class="play-again-button">Play Again</button>
     <button class="change-bet-button">Change Bet</button>
     <button class="double-down-button">Double Down</button>
-    <button class="split-button">Split</button>
     <div class="scoreboard-container"></div>
+    <div class="message-container"></div>
     <div class="player-hand-container"></div>
     <div class="dealer-hand-container"></div>
   '
@@ -29,3 +29,4 @@ class window.AppView extends Backbone.View
     @$('.player-hand-container').html new HandView(collection: @model.get 'playerHand').el
     @$('.dealer-hand-container').html new HandView(collection: @model.get 'dealerHand').el
     @$('.scoreboard-container').html new ScoreboardView(model: @model.get 'scoreboard').el
+    @$('.message-container').html new MessageView(model: @model.get 'message').el

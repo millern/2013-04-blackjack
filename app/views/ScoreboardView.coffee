@@ -3,8 +3,8 @@ class window.ScoreboardView extends Backbone.View
 
   #todo: switch to mustache
   template: _.template '<div>
-                        <p>Wins: <%= playerScore%></p>
-                        <p>Losses: <%= dealerScore%></p>
+                        <p>Wins: <%=playerScore%></p>
+                        <p>Losses: <%=dealerScore%></p>
                         <p>Money: $<%=playerMoney%></p>
                         <p>Current Bet: $<%=currentBet%></p>
                         </div>'
